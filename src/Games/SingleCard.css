@@ -1,52 +1,47 @@
 .card {
-    position: relative;
- }
- .card img {
-    width: 100%;
-    display: block;
-    border: 2px solid #fff;
-    border-radius: 6px;
- }
- 
- /* Front of the card - the Picture */
- .card .front {
-    transform: rotateY(90deg);
-    transition: all ease-in-out 0.2s;
-    position: absolute;
- }
- .flipped .front {
-    transform: rotateY(0deg);
-    transition-delay: 0.2s;
- }
- 
- .cardface{
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   width: 100%;
-   height: 100%;
-   border-radius: 12px;
-   border-width: 1px;
-   border-style: solid;
-   overflow: hidden;
-   object-fit: contain;
- }
+  position: relative;
+  aspect-ratio: 1 / 1;
+}
 
- /* Back of the card - the cover */
- .card .back {
-    transition: all ease-in-out 0.2s;
-    transition-delay: 0.2s;
- }
- .flipped .back {
-    transform: rotateY(90deg);
-    transition-delay: 0s;
- }
+.card img {
+  width: 100%;
+  display: block;
+  border: 2px solid #fff;
+  border-radius: 6px;
+  background-color: #1e1e1e;
+}
 
- .card:hover {
-    background-color:bisque;
-    border-color:chocolate;
-    border-width:5px;
-    padding:0;
-    margin:0;
-    cursor: pointer;
- }
+.card .front {
+  transform: rotateY(90deg);
+  transition: all ease-in-out 0.2s;
+  position: absolute;
+  inset: 0;
+}
+
+.flipped .front {
+  transform: rotateY(0deg);
+  transition-delay: 0.2s;
+}
+
+.cardface {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  object-fit: contain;
+}
+
+.card .back {
+  transition: all ease-in-out 0.2s;
+  transition-delay: 0.2s;
+  cursor: pointer;
+}
+
+.flipped .back {
+  transform: rotateY(90deg);
+  transition-delay: 0s;
+}
+
+.card:hover .back {
+  border-color: orchid;
+}

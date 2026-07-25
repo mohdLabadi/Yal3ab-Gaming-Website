@@ -1,66 +1,111 @@
-.hangman{
-    font-family: "Audiowide", sans-serif;
-    margin-top: 10vh;
-    margin-bottom: 50vh;   
-}
-.score-hangman{
-    font-family: "Audiowide", sans-serif;
-    margin-bottom: 5vh;
-    text-align: center;
-    justify-items: center;
-}
-.score-hangman h1{
-    text-align: center;
-}
-.letters-container{
-    text-align: center;
-    border-bottom: 2px black;
-    margin-bottom:50px;
-    margin-right:10%;
-    margin-left:10%;
-    background-color: purple;
-    padding:20px;
-    border-radius:20px;
-    width:auto;
-   
-
-}
-.input-guess{
-    text-align: center;
-    font-family: "Audiowide", sans-serif;
-    
-    padding: 5px;
-}
-.submitting{
-    padding-top: 20px;
-}
-.input-submit{
-    padding: 5px 20px;
-    text-align: center;
-    transition: 0.5s;
-    border: solid 2px black;
-    background-color:purple;
-
-}
-.input-submit:hover{
-    background-color: blue;
-    color: white;
-    cursor: pointer;
-}
-.feedback h3{
-    text-align: center;
-    padding-top: 5vh;
+.hangman {
+  font-family: "Audiowide", sans-serif;
+  padding: 1rem 0 3rem;
+  max-width: 720px;
+  margin: 0 auto;
 }
 
-.hello{
-    display: flex;
-    justify-content: center;
-    flex-direction: row;
+.score-hangman {
+  text-align: center;
+  margin-bottom: 2rem;
 }
-.one-word{
-    color: white;
-    margin: 10px;
-    padding: 10px;
-    border: solid 2px black;
-    background-color: purple;
+
+.score-hangman h1 {
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  margin: 0;
+}
+
+.score-hangman hr {
+  border-color: rgba(255, 255, 255, 0.3);
+  opacity: 1;
+  margin-top: 1rem;
+}
+
+.letters-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin: 0 auto 2rem;
+  background-color: #5b0f8a;
+  padding: 1.25rem;
+  border-radius: 20px;
+}
+
+.letter-slot {
+  flex: 1 1 48px;
+  max-width: 80px;
+  min-width: 40px;
+  text-align: center;
+}
+
+.letter-slot h1 {
+  margin: 0;
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.guess-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.input-guess {
+  text-align: center;
+  font-family: "Audiowide", sans-serif;
+  padding: 0.5rem 0.75rem;
+  width: 64px;
+  border-radius: 8px;
+  border: none;
+  font-size: 1.25rem;
+}
+
+.input-submit {
+  padding: 0.5rem 1.5rem;
+  text-align: center;
+  transition: 0.5s;
+  border: solid 2px black;
+  background-color: #5b0f8a;
+  color: white;
+  border-radius: 8px;
+  font-family: "Audiowide", sans-serif;
+}
+
+.input-submit:hover {
+  background-color: blue;
+  color: white;
+  cursor: pointer;
+}
+
+.feedback {
+  text-align: center;
+  padding-top: 1.5rem;
+}
+
+.feedback h3 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.missed-letters {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+
+.one-word {
+  color: white;
+  margin: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  border: solid 2px black;
+  background-color: #5b0f8a;
+  border-radius: 8px;
+}
+
+.one-word h3 {
+  margin: 0;
+  font-size: 1rem;
 }

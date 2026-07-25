@@ -1,31 +1,57 @@
-.App {
-    max-width: 860px;
-    margin: 40px auto;
- }
- button {
-    background: none;
-    border: 2px solid white;
-    padding: 6px 12px;
-    border-radius: 4px;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-    font-size: 1em;
- }
- button:hover {
-    background: purple;
-    color: white;
- }
- .card-grid {
-    margin-top: 40px;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-gap: 20px;
- }
+.memory-game {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 1rem 0 3rem;
+  text-align: center;
+}
 
- h1,h2{
-    color: white;
-    padding-bottom: 10px;
-    font-family: sans-serif;  
- }
+.memory-game button {
+  background: none;
+  border: 2px solid white;
+  padding: 6px 12px;
+  border-radius: 4px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 1em;
+}
 
+.memory-game button:hover {
+  background: #5b0f8a;
+  color: white;
+}
+
+.card-grid {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.memory-game h1,
+.memory-game h2 {
+  color: white;
+  padding-bottom: 10px;
+  font-family: "Audiowide", sans-serif;
+}
+
+.memory-game h1 {
+  font-size: clamp(1.4rem, 3vw, 2rem);
+}
+
+.memory-game h2 {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+}
+
+@media (max-width: 640px) {
+  .card-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+  }
+}
+
+@media (max-width: 420px) {
+  .card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

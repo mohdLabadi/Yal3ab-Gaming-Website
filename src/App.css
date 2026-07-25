@@ -1,26 +1,64 @@
-@import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Audiowide&display=swap");
 
-/* The navigation bar */
-.navbar-header{
-  padding-left: 10px;
-}
-.nav{
-  padding: 10px;
-}
-.navbar{
+.site-nav {
   color: white;
-  background-color: purple;
+  background-color: #5b0f8a;
+  padding: 0.5rem 1rem;
 }
 
-.lines {
+.site-nav .navbar-brand {
   display: flex;
+  align-items: center;
+  gap: 0.75rem;
   margin: 0;
-
-  flex-grow: 1;
 }
-.lines .box-sm {
-  flex-grow: 1;
 
+.logo-image {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.brand-text {
+  font-family: "Audiowide", sans-serif;
+  font-size: 1.25rem;
+  color: white;
+}
+
+.player-stats {
+  flex-direction: row;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0;
+}
+
+.player-stats .nav-item {
+  list-style: none;
+}
+
+.score {
+  background-color: rgb(35, 35, 35);
+  padding: 0.5rem 0.9rem;
+  border-radius: 9px;
+  white-space: nowrap;
+}
+
+.score h5 {
+  font-family: "Audiowide", sans-serif;
+  font-size: 0.85rem;
+  margin: 0;
+  color: white;
+}
+
+.color-stripe {
+  display: flex;
+  width: 100%;
+  height: 8px;
+}
+
+.color-stripe .box-sm {
+  flex-grow: 1;
   transition: all 0.5s ease-in-out;
 }
 
@@ -40,33 +78,26 @@
   background-color: greenyellow;
 }
 
-.lines .box-sm:hover {
+.color-stripe .box-sm:hover {
   flex-grow: 10;
 }
 
-.logo-image{
-  width: 20%;
-  height: 20%;
-  border-radius: 20px;
-  overflow: hidden;
+.site-main {
+  min-height: calc(100vh - 72px);
+  background-color: #000;
+  overflow-x: hidden;
 }
 
-h5{
-  font-family: "Audiowide", sans-serif;
-  font-style: bold;
-}
+@media (max-width: 576px) {
+  .brand-text {
+    display: none;
+  }
 
-.score{
-  background-color: rgb(35,35,35);
-  padding:10%;
-  border-radius:9px;
-  
-}
-li{
-  display:inline-block;
-  margin: 15px;
-  padding:10px;
-  border-radius: 15px;
-  white-space:nowrap;
-}
+  .score {
+    padding: 0.4rem 0.6rem;
+  }
 
+  .score h5 {
+    font-size: 0.7rem;
+  }
+}

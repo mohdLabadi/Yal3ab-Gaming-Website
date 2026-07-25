@@ -1,127 +1,90 @@
 import "./Hangman.css";
 import { useState, useContext } from "react";
-import {currentUserInfo} from "../App";
+import { currentUserInfo } from "../App";
+
 function Hangman() {
-  
-  const [score, setScore] = useState(0);
-  const [guess, setGuess] = useState();
-  const [feedback, setFeedBack] = useState();
-  const [allGuessed, setAllGuesssed] = useState([]);
-  const [word, setWord] = useState("SIMPLE");
+  const [guess, setGuess] = useState("");
+  const [feedback, setFeedBack] = useState("");
+  const [allGuessed, setAllGuessed] = useState([]);
+  const [word] = useState("SIMPLE");
   const [letter, setLetter] = useState(["-", "-", "-", "-", "-", "-"]);
-  
-  const handleSubmit = e => {
-    e.preventDefault();
-    toClick();
-  };
-  const value = useContext(currentUserInfo)
-  const handleKeypress = e => {
-    //it triggers by pressing the enter key
-  if (e.keyCode === 13) {
-    handleSubmit();
-  }
-  };
+  const value = useContext(currentUserInfo);
 
   function toClick() {
-    let appearance = [];
-    if (word.includes(guess)) {
-      for (let i = 0; i < word.length; i++) {
-        if (word[i] == guess) {
-          appearance.push(i);
-        }
-      }
-      console.log(appearance);
-      let arrx = letter;
-      for (let i = 0; i < appearance.length; i++) {
-        arrx[appearance[i]] = guess;
-      }
+    const nextGuess = (guess || "").toUpperCase().trim();
+    if (!nextGuess || allGuessed.includes(nextGuess) || letter.includes(nextGuess)) {
+      setFeedBack(nextGuess ? "Already tried" : "Enter a letter");
+      return;
+    }
+
+    if (word.includes(nextGuess)) {
+      const updated = letter.map((char, i) =>
+        word[i] === nextGuess ? nextGuess : char
+      );
+      setLetter(updated);
       setFeedBack("Correct +50");
-      setLetter(arrx);
-      let x = value.useScore; 
-      x+=50;
-      console.log(x);
-      value.setUserScore(x)
-      setGuess("");
-      
-      
+      value.setUserScore(value.useScore + 50);
     } else {
-      
       setFeedBack("Wrong -50");
-      value.setUserScore(value.useScore-50)
-      allGuessed.push(guess);
-      setGuess("")
-      console.log(allGuessed);
-    }    
-    
+      value.setUserScore(value.useScore - 50);
+      setAllGuessed((prev) => [...prev, nextGuess]);
+    }
 
-    
-}
+    setGuess("");
+  }
 
-
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      toClick();
+    }
+  };
 
   return (
-    <div className="container-fluid hangman">
-      <div className="row">
-        <div className="col-sm-12 score-hangman">
-          <h1 className="comp">Total Points: {score} </h1>
-          <hr />
-        </div>
+    <div className="hangman">
+      <div className="score-hangman">
+        <h1>Total Points: {value.useScore}</h1>
+        <hr />
       </div>
-      
-      <div className="row letters-container">
-        <div className="col-sm-2">
-          <h1>{letter[0]}</h1>
-        </div>
-        <div className="col-sm-2">
-          <h1>{letter[1]}</h1>
-        </div>
-        <div className="col-sm-2">
-          <h1>{letter[2]}</h1>
-        </div>
-        <div className="col-sm-2">
-          <h1>{letter[3]}</h1>
-        </div>
-        <div className="col-sm-2">
-          <h1>{letter[4]}</h1>
-        </div>
-        <div className="col-sm-2">
-          <h1>{letter[5]}</h1>
-        </div>
+
+      <div className="letters-container">
+        {letter.map((char, index) => (
+          <div className="letter-slot" key={index}>
+            <h1>{char}</h1>
+          </div>
+        ))}
       </div>
-      <div className="row d-flex justify-content-center  ">
-        
+
+      <div className="guess-row">
         <input
-          className="col-sm-1 input-guess"
+          className="input-guess"
           type="text"
-          onChange={(e) => {
-            setGuess(e.target.value.toUpperCase());
-          }}
+          onChange={(e) => setGuess(e.target.value.toUpperCase())}
           value={guess}
-
-          onKeyPress={handleKeypress}
-
-          maxLength="1"
+          onKeyDown={handleKeyDown}
+          maxLength={1}
+          aria-label="Guess a letter"
         />
-      </div>
-      <div className="row d-flex justify-content-center submitting">
-        <button onClick={toClick}  type="submit" className="col-sm-2 input-submit">
+        <button type="button" onClick={toClick} className="input-submit">
           Guess
         </button>
       </div>
-      <div className="row d-flex justify-content-center feedback">
-        <h3 className="col-sm-5">{feedback}</h3>
-      </div>
-      <div className="hello">
-        {allGuessed.map((e) => (
-          <div className="one-word" key={e}>
-          <h3>{e}</h3>
-        </div>
 
-        )
-          
-        )}
+      {feedback && (
+        <div className="feedback">
+          <h3>{feedback}</h3>
+        </div>
+      )}
+
+      <div className="missed-letters">
+        {allGuessed.map((item) => (
+          <div className="one-word" key={item}>
+            <h3>{item}</h3>
+          </div>
+        ))}
       </div>
     </div>
   );
 }
+
 export default Hangman;

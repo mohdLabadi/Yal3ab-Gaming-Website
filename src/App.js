@@ -1,13 +1,13 @@
 import Games from "./Games/Games";
 import "./App.css";
 import HomePage from "./Home";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { createContext, useState } from "react";
 
-export const  currentUserInfo = createContext();
+export const currentUserInfo = createContext();
 
 function App() {
-  const [userName, setUserName] = useState("Name");
+  const [userName, setUserName] = useState("Guest");
   const [useScore, setUserScore] = useState(0);
 
   return (
@@ -15,50 +15,49 @@ function App() {
       value={{ userName, setUserName, useScore, setUserScore }}
     >
       <Router>
-        {/* The header */}
-        <nav class="navbar navbar-inverse navbar-fixed-top">
-          <div class="container-fluid">
-            <div class="navbar-header">
-              {/* Put Logo somewhere here */}
-              <h4>
-                {" "}
-                <a class="navbar-brand" href="/">
-                  <img src="/img/Yal3ab.png" class="img-fluid logo-image"></img>
-                </a>
-              </h4>
-            </div>
+        <nav className="navbar navbar-expand navbar-dark site-nav">
+          <div className="container-fluid">
+            <a className="navbar-brand" href="/">
+              <img
+                src="/img/Yal3ab.png"
+                className="logo-image"
+                alt="Yal3ab"
+              />
+              <span className="brand-text">Yal3ab</span>
+            </a>
 
-            <ul class="nav navbar-nav">
-              <div>
-                <li>
-                  <div class="score">
-                    <h5>Score = {useScore}</h5>
-                  </div>
-                </li>
-
-                <li>
-                  <div class="score">
-                    <h5>Player: {userName}</h5>
-                  </div>
-                </li>
-              </div>
+            <ul className="navbar-nav ms-auto player-stats">
+              <li className="nav-item">
+                <div className="score">
+                  <h5>Score: {useScore}</h5>
+                </div>
+              </li>
+              <li className="nav-item">
+                <div className="score">
+                  <h5>Player: {userName}</h5>
+                </div>
+              </li>
             </ul>
           </div>
         </nav>
-        <div className="lines">
+
+        <div className="color-stripe" aria-hidden="true">
           <div className="box-sm orange"></div>
           <div className="box-sm green"></div>
           <div className="box-sm yellow"></div>
           <div className="box-sm lime"></div>
         </div>
-        <Switch>
-          <Route path="/" exact>
-            <HomePage />
-          </Route>
-          <Route path="/game/:type">
-            <Games></Games>
-          </Route>
-        </Switch>
+
+        <main className="site-main">
+          <Switch>
+            <Route path="/" exact>
+              <HomePage />
+            </Route>
+            <Route path="/game/:type">
+              <Games />
+            </Route>
+          </Switch>
+        </main>
       </Router>
     </currentUserInfo.Provider>
   );

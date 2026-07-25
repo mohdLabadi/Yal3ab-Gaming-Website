@@ -1,144 +1,321 @@
-.all-home {
-  padding: 20px 10px 0 40px;
-}
-h1{
-  font-family: "Audiowide", sans-serif;
-
-}
 .all-page {
   font-family: "Audiowide", sans-serif;
   background-color: black;
-  height: 100vw;
-}
-.main-content {
-  padding-top: 20vh;
-
-  background-color: black;
+  min-height: calc(100vh - 72px);
   color: white;
+  padding: 2rem 0 4rem;
 }
-.main-text {
+
+.home-container {
+  max-width: 1100px;
+}
+
+.main-content {
   text-align: center;
+  padding: 3rem 1rem 2rem;
 }
-/* The lines */
-.lines {
+
+.main-content h1 {
+  font-family: "Audiowide", sans-serif;
+  font-size: clamp(1.6rem, 4vw, 2.5rem);
+  margin-bottom: 1rem;
+}
+
+.intro-text {
+  font-family: sans-serif;
+  font-size: clamp(1rem, 2.2vw, 1.25rem);
+  color: whitesmoke;
+  max-width: 40rem;
+  margin: 0 auto 1.5rem;
+  line-height: 1.5;
+}
+
+.accent-lines {
   width: 100%;
+  max-width: 420px;
   height: 10px;
-
   display: flex;
-  margin: 0;
-
-  flex-grow: 1;
+  margin: 0 auto;
 }
-.lines .box-sm {
-  flex-grow: 1;
 
+.accent-lines .box-sm {
+  flex-grow: 1;
   transition: all 0.5s ease-in-out;
 }
+
 .black {
   background-color: blanchedalmond;
 }
+
 .white {
   background-color: white;
 }
-.green {
-  background-color: green;
-}
+
 .red {
   background-color: red;
 }
-.lines .box-sm:hover {
+
+.accent-lines .box-sm:hover {
   flex-grow: 12;
 }
 
-
-
-/* Choosing which games */
 .games-content {
-  text-align: center;
-
-  margin-bottom: 10vh;
-  background-color: black;
+  margin: 1rem 0 2rem;
 }
 
-.games-content .one-game {
-  border-radius: 0px 80px 80px 0;
-  transition: 1s;
-  padding-top: 10vh;
-  
+.one-game {
+  width: 100%;
+  min-height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  border-radius: 0 48px 48px 0;
+  background-color: rgb(30, 30, 30);
+  color: white;
+  transition: 0.35s ease;
+  padding: 2rem 1rem;
 }
-.games-content .one-game:hover {
-  letter-spacing: 2px;
+
+.one-game h2 {
+  font-family: "Audiowide", sans-serif;
+  margin: 0;
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+}
+
+.one-game:hover,
+.one-game.active {
+  letter-spacing: 1px;
   color: whitesmoke;
+  background-color: #5b0f8a;
+  border-color: orchid;
   cursor: pointer;
 }
 
-.divider{
-  font-weight: bold;
+.divider {
   border: solid 2px white;
+  opacity: 1;
+  margin: 1.5rem 0;
 }
 
-/* information about hangman */
-.game-title{
-  font-family:"audiowide", sanserif;
-  padding:3%;
-  margin:2%;
-}
-
-p{
-  font-family: sans-serif;
-  font-size: 3vh;
-  color:whitesmoke;
-  margin-top:7%;
-}
-
-.image{
-  padding: 15px;
-  z-index: 1;
-  size:100%;
-  text-align: center;
-}
-.hangman-information{
-  background-color:black;
-  border-bottom: 3px bold black;  
-}
-
-.memoryGame-information{
+.game-details {
   background-color: black;
-  margin-top:10px;
-  
+  padding: 0.5rem 0 2rem;
 }
 
-button{
-  border:none;
+.game-title {
   text-align: center;
- 
-  padding:4%;
+  padding: 0.5rem 0 1rem;
+}
+
+.game-title h2 {
+  font-family: "Audiowide", sans-serif;
+  margin: 0;
+}
+
+.game-details p {
+  font-family: sans-serif;
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  color: whitesmoke;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.detail-image {
+  text-align: center;
+}
+
+.detail-image img {
+  max-width: 100%;
+  max-height: 220px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 16px;
+}
+
+.cat-fact-stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.cat-mascot {
+  position: relative;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  width: min(100%, 480px);
+}
+
+.cat-mascot img {
+  width: 100%;
+  max-height: min(56vh, 480px);
+  object-fit: cover;
+  display: block;
+  border-radius: 0;
+  transition: transform 0.35s ease;
+}
+
+.cat-mascot:hover img,
+.cat-mascot.revealed img {
+  transform: translateY(-8px) scale(1.02);
+}
+
+.cat-mascot:active img {
+  transform: scale(0.98);
+}
+
+.cat-hint {
+  display: block;
+  margin-top: 0.65rem;
+  font-family: "Audiowide", sans-serif;
+  font-size: 0.85rem;
+  color: orchid;
+  letter-spacing: 0.04em;
+  animation: cat-pulse 1.6s ease-in-out infinite;
+}
+
+.cat-mascot.revealed .cat-hint {
+  animation: none;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.cat-fact-bubble {
+  flex: 1 1 220px;
+  max-width: 300px;
+  min-height: 0;
+  opacity: 0;
+  transform: translateX(-12px) scale(0.92);
+  pointer-events: none;
+  background: linear-gradient(145deg, #3a0a58, #5b0f8a);
+  border: 2px solid orchid;
+  border-radius: 18px 18px 18px 4px;
+  padding: 1.1rem 1.2rem;
+  text-align: left;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.cat-fact-bubble.open {
+  opacity: 1;
+  transform: translateX(0) scale(1);
+  pointer-events: auto;
+}
+
+.cat-fact-bubble p {
+  font-family: sans-serif;
+  font-size: 1.05rem !important;
+  line-height: 1.45;
+  margin: 0 0 0.75rem !important;
+  animation: fact-pop 0.4s ease;
+}
+
+.fact-next {
+  border: none;
+  background: rgba(0, 0, 0, 0.35);
+  color: white;
+  font-family: "Audiowide", sans-serif;
+  font-size: 0.7rem;
+  padding: 0.4rem 0.75rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.25s ease;
+}
+
+.fact-next:hover {
+  background: blueviolet;
+  color: white;
+}
+
+@keyframes cat-pulse {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes fact-pop {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 767.98px) {
+  .cat-mascot {
+    width: 100%;
+  }
+
+  .cat-mascot img {
+    max-height: 42vh;
+  }
+
+  .cat-fact-bubble {
+    border-radius: 4px 18px 18px 18px;
+    transform: translateY(10px) scale(0.92);
+    max-width: 100%;
+  }
+
+  .cat-fact-bubble.open {
+    transform: translateY(0) scale(1);
+  }
+}
+
+.play-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 1.75rem;
+  background-color: rgb(30, 30, 30);
+  padding: 1.25rem;
+  border-radius: 16px;
+}
+
+.play-form label {
+  font-family: "Audiowide", sans-serif;
+  color: white;
+  margin: 0;
+}
+
+.play-form input {
+  margin: 0;
+  padding: 0.55rem 1rem;
+  border: none;
   border-radius: 20px;
-  background-color:rgb(30,30,30)
+  min-width: 140px;
 }
 
-button:hover{
-  background-color:blueviolet;
-}
-
-input{
-  margin-bottom:10px;
-  margin-top:10px;
-  padding:1%;
+.play-btn {
+  border: none;
+  text-align: center;
+  padding: 0.55rem 1.5rem;
   border-radius: 20px;
+  background-color: #5b0f8a;
+  color: white;
+  font-family: "Audiowide", sans-serif;
+  transition: 0.3s ease;
 }
 
-label{
-  font-family:"audiowide", sans-serif;
-  color:white;
-  margin-right: 5px;
+.play-btn:hover {
+  background-color: blueviolet;
+  color: white;
 }
 
-input{
-  size: scale(0.9);
-}
-span{
-  background-color: rgb(30,30,30);
-  padding:20px;
-  
+@media (max-width: 575.98px) {
+  .one-game {
+    border-radius: 16px;
+    min-height: 100px;
+  }
 }
